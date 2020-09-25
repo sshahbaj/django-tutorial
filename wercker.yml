@@ -1,0 +1,18 @@
+box: python:3.7-slim-buster
+services:
+    - id: postgres
+
+build:
+  steps:
+    - script:
+        name: pip install requirements
+        code: |
+          pip install -r requirements.txt
+    - script:
+        name: Django run checks
+        code: |
+          python manage.py check
+    - script:
+        name: Run tests
+        code: |
+          python manage.py test
